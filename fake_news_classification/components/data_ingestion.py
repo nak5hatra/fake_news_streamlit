@@ -27,7 +27,7 @@ class DataIngestion:
             collections = self.client[database_name][collection_name]
             df = pd.DataFrame(list(collections.find()))
             
-            df.drop(columns='_id', inplace=True)
+            df.drop(columns=['_id', 'Unnamed: 0'], inplace=True)
             df.fillna(' ', inplace=True)
             return df
         
