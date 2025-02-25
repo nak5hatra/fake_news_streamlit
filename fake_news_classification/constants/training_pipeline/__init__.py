@@ -8,10 +8,11 @@ FILE_NAME: str = "WELFake_Dataset.csv"
 
 TRAIN_FILE_NAME: str = "train.csv"
 TEST_FILE_NAME: str = "test.csv"
+PREPROCESSOR_FILE_NAME: str = "preprocessor.pkl"
 
 
 """
-Data ingestion Constants : DATA_INGESTION_xx 
+Data Ingestion Constants : DATA_INGESTION_xx 
 """
 
 DATA_INGESTION_COLLECTION_NAME: str = "news"
@@ -22,3 +23,17 @@ DATA_INGESTION_INGESTED_DIR: str ="ingested"
 DATA_INGESTION_TRAIN_TEST_SPLIT: float = 0.2
 DATA_INGESTION_DATABASE_HOST: str = "localhost"
 DATA_INGESTION_DATABASE_PORT: int = 27017
+
+
+"""
+Data Transformation Constants : DATA_TRANFORMATION_xx 
+"""
+
+DATA_TRANFORMATION_DIR_NAME: str = "Data_Tranformation"
+DATA_TRANFORMATION_FEATURE_STORE_DIR: str = "feature_store"
+DATA_TRANFORMATION_TRANSFORMED_DIR: str = "transfomed"
+DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR: str = "transformed_object"
+DATA_TRANFORMATION_X_TRAIN_FILE_NAME: str = 'x_train.npz'
+DATA_TRANFORMATION_X_TEST_FILE_NAME: str = 'x_test.npz'
+DATA_TRANFORMATION_Y_TRAIN_FILE_NAME: str = 'y_train.npy'
+DATA_TRANFORMATION_Y_TEST_FILE_NAME: str = 'y_test.npy'
