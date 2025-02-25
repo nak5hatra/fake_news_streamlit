@@ -55,6 +55,18 @@ class DataTransformationConfig:
         self.y_test_file_path: str = os.path.join(
             self.data_transformation_dir, training_pipeline.DATA_TRANFORMATION_FEATURE_STORE_DIR, training_pipeline.DATA_TRANFORMATION_Y_TEST_FILE_NAME
         )
-        self.preprocessor_file_path: str = os.path.join(
-            self.data_transformation_dir, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR, training_pipeline.PREPROCESSOR_FILE_NAME
+
+class ModelTrainerConfig:
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
+        self.model_trainer_dir: str = os.path.join(
+            training_pipeline_config.artifact_dir, 
+            training_pipeline.MODEL_TRAINER_DIR_NAME
+        )
+        
+        self.model_file_name: str = os.path.join(
+            self.model_trainer_dir, training_pipeline.MODEL_TRAINER_TRAINED_MODEL_DIR, training_pipeline.MODEL_TRAINER_TRAINED_MODEL_NAME
+        )
+        
+        self.model_preprocessor_file_path: str = os.path.join(
+            self.model_trainer_dir, training_pipeline.DATA_TRAINER_PREPROCESSOR_OBJECT_DIR, training_pipeline.PREPROCESSOR_FILE_NAME
         )

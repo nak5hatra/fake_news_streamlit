@@ -1,7 +1,7 @@
 from fake_news_classification.components.data_ingestion import DataIngestion
 from fake_news_classification.components.data_transformation import DataTransformation
-from fake_news_classification.entity.artifact_entity import DataIngestionArtifact
-from fake_news_classification.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig, DataTransformationConfig
+from fake_news_classification.components.model_trainer import ModelTrainer
+from fake_news_classification.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig, DataTransformationConfig, ModelTrainerConfig
 
 
 
@@ -16,3 +16,8 @@ data_transformation_config = DataTransformationConfig(training_pipeline_config=t
 data_transformation = DataTransformation(data_ingestion_artifact=data_ingestion_artifact, data_transformation_config=data_transformation_config)
 data_transformation_artifact = data_transformation.initiate_data_transformation()
 print(data_transformation_artifact)
+
+model_trainer_config = ModelTrainerConfig(training_pipeline_config=traning_pipeline_config)
+model_trainer = ModelTrainer(data_transformation_artifact=data_transformation_artifact, model_trainer_config=model_trainer_config)
+model_trainer_artifact = model_trainer.inititate_model_training()
+print(model_trainer_artifact)

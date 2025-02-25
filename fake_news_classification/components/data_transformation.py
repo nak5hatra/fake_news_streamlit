@@ -3,11 +3,10 @@ import numpy as np
 import sys
 import nltk
 from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer
 from fake_news_classification.exception.exception import NewsException
 from fake_news_classification.entity.config_entity import DataTransformationConfig
 from fake_news_classification.entity.artifact_entity import DataTransformationArtifact, DataIngestionArtifact
-from utils.main_urils.utils import read_data, save_npy, save_npz, save_models
+from utils.main_urils.utils import read_data, save_npy, save_models
 nltk.download('stopwords')
 stop = stopwords.words('english')
 
@@ -40,27 +39,20 @@ class DataTransformation:
             test_input_feature = test_df['title'].values
             test_target_feature = test_df['label']
             
-            preprocessor = TfidfVectorizer(lowercase=False)
-            train_inupt_feature = preprocessor.fit(train_inupt_feature)
-            test_input_feature = preprocessor.transform(test_input_feature)
             
             
             ## saving train_inupt_feature, train_target_feature, test_input_feature, test_target_feature
-            save_npz(self.data_transformation_config.x_train_file_path, train_inupt_feature)
-            save_npz(self.data_transformation_config.x_test_file_path, test_input_feature)
+            save_npy(self.data_transformation_config.x_train_file_path, train_inupt_feature)
+            save_npy(self.data_transformation_config.x_test_file_path, test_input_feature)
             
             save_npy(self.data_transformation_config.y_train_file_path, train_target_feature)
             save_npy(self.data_transformation_config.y_test_file_path, test_target_feature)
-            
-            ## saving preprocessor
-            save_models(self.data_transformation_config.preprocessor_file_path, preprocessor)
             
             data_transformation_artifact =DataTransformationArtifact(
                 x_train_file_path=self.data_transformation_config.x_train_file_path,
                 x_test_file_path=self.data_transformation_config.x_test_file_path,
                 y_test_file_path=self.data_transformation_config.y_test_file_path,
                 y_train_file_path=self.data_transformation_config.y_train_file_path,
-                preprocessor_file_path= self.data_transformation_config.preprocessor_file_path
             )
             
             return data_transformation_artifact

@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import pickle
 from fake_news_classification.exception.exception import NewsException
+from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score
 
 
 def read_data(file_path: str) -> pd.DataFrame:
@@ -21,12 +22,10 @@ def save_npy(file_path: str, array):
     except Exception as e:
         raise NewsException(e, sys)
 
-def save_npz(file_path: str, array):
+def load_files(file_path):
     try:
-        dir_path = os.path.dirname(file_path)
-        os.makedirs(dir_path, exist_ok=True)
-        with open(file_path, 'wb') as file_object:
-            np.savez(file_object, array)
+        data = np.load(file_path, allow_pickle=True)
+        return data
     except Exception as e:
         raise NewsException(e, sys)
     
@@ -39,3 +38,9 @@ def save_models(file_path: str, model):
             pickle.dump(model, model_object)
     except Exception as e:
         raise NewsException(e, sys)
+    
+def evaluate_model(y_true, y_pred):
+    print(f"F1_score: {f1_score(y_true=y_true, y_pred=y_pred)}")
+    print(f"Recall_score: {recall_score(y_true=y_true, y_pred=y_pred)}")
+    print(f"Precision_score: {precision_score(y_true=y_true, y_pred=y_pred)}")
+    print(f"Accuracy_score: {accuracy_score(y_true=y_true, y_pred=y_pred)}")
