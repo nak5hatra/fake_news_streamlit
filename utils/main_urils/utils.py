@@ -44,3 +44,8 @@ def evaluate_model(y_true, y_pred):
     print(f"Recall_score: {recall_score(y_true=y_true, y_pred=y_pred)}")
     print(f"Precision_score: {precision_score(y_true=y_true, y_pred=y_pred)}")
     print(f"Accuracy_score: {accuracy_score(y_true=y_true, y_pred=y_pred)}")
+    
+def load_models(file_path: str):
+    with open(file_path, 'rb') as model_object:
+        model = pickle.load(model_object)
+        return model

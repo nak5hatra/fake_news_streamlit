@@ -51,7 +51,7 @@ class DataIngestion:
             
             train_data_set, test_data_set = train_test_split(
                 dataframe,
-                train_size=train_test_split_ratio,
+                test_size=train_test_split_ratio,
                 random_state=42
             )
             
